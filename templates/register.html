@@ -24,14 +24,14 @@
               </div>
             </div>
 
-            <!-- EMAIL WITH 24241a RESTRICTION -->
+            <!-- EMAIL WITH @grietcollege.com RESTRICTION -->
             <div class="mb-3">
               <label class="form-label uv-label">College Email</label>
               <div class="input-group uv-input-group">
                 <span class="input-group-text"><i class="bi bi-envelope"></i></span>
                 <input type="email" name="email" id="emailInput"
                        class="form-control uv-input"
-                       placeholder="24241a66xx@griet.ac.in"
+                       placeholder="yourname@grietcollege.com"
                        oninput="checkEmail(this)"
                        required/>
               </div>
@@ -40,8 +40,8 @@
               <!-- Restriction notice box -->
               <div class="email-rule-box mt-2">
                 <i class="bi bi-shield-lock-fill me-1"></i>
-                Only GRIET college emails starting with <strong>24241a</strong> are allowed
-                &nbsp;<code>e.g. 24241a66bu@griet.ac.in</code>
+                Only GRIET college emails ending with <strong>@grietcollege.com</strong> are allowed
+                &nbsp;<code>e.g. yourname@grietcollege.com</code>
               </div>
             </div>
 
@@ -85,12 +85,12 @@ function checkEmail(input) {
 
   feedback.style.display = 'block';
 
-  if (val.startsWith('24241a')) {
-    feedback.innerHTML = '<span style="color:#43d9ad;"><i class="bi bi-check-circle-fill me-1"></i>Valid college email!</span>';
+  if (val.endsWith('@grietcollege.com')) {
+    feedback.innerHTML = '<span style="color:#43d9ad;"><i class="bi bi-check-circle-fill me-1"></i>Valid GRIET college email!</span>';
     input.style.borderColor = '#43d9ad';
     submitBtn.disabled = false;
   } else {
-    feedback.innerHTML = '<span style="color:#ff6584;"><i class="bi bi-x-circle-fill me-1"></i>Email must start with <strong>24241a</strong> — e.g. 24241a66bu@griet.ac.in</span>';
+    feedback.innerHTML = '<span style="color:#ff6584;"><i class="bi bi-x-circle-fill me-1"></i>Email must end with <strong>@grietcollege.com</strong> — e.g. yourname@grietcollege.com</span>';
     input.style.borderColor = '#ff6584';
     submitBtn.disabled = true;
   }
@@ -99,10 +99,10 @@ function checkEmail(input) {
 // Also block form submit if somehow bypass
 document.getElementById('registerForm').addEventListener('submit', function(e) {
   const email = document.getElementById('emailInput').value.toLowerCase().trim();
-  if (!email.startsWith('24241a')) {
+  if (!email.endsWith('@grietcollege.com')) {
     e.preventDefault();
     document.getElementById('emailFeedback').style.display = 'block';
-    document.getElementById('emailFeedback').innerHTML = '<span style="color:#ff6584;"><i class="bi bi-x-circle-fill me-1"></i>Email must start with <strong>24241a</strong>!</span>';
+    document.getElementById('emailFeedback').innerHTML = '<span style="color:#ff6584;"><i class="bi bi-x-circle-fill me-1"></i>Email must end with <strong>@grietcollege.com</strong>!</span>';
   }
 });
 </script>

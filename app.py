@@ -254,8 +254,8 @@ def register():
         password = request.form['password']
         full_name = request.form.get('full_name', '').strip()
         bio = request.form.get('bio', '').strip()
-        if not email.startswith('24241a'):
-            flash('Only college emails starting with 24241a are allowed!', 'danger')
+        if not email.endswith('@grietcollege.com'):
+            flash('Only GRIET college emails ending with @grietcollege.com are allowed!', 'danger')
             return render_template('register.html')
         colors = ['#6c63ff','#ff6584','#43d9ad','#f7c948','#ff8c42','#4ecdc4','#a29bfe','#fd79a8']
         color = random.choice(colors)
