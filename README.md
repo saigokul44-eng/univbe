@@ -35,12 +35,45 @@ python app.py
 
 Visit **http://localhost:5000** in your browser.
 
-## 📁 Project Structure
+## � Production Deployment on Render
+
+### ⚠️ Important Notes
+- **Database Limitation**: This app uses SQLite which works fine on Render's persistent disk. Data persists between deployments.
+- For high-traffic production, consider switching to PostgreSQL.
+
+### Deployment Steps
+
+1. **Create a Render Account**:
+   - Go to [render.com](https://render.com) and sign up
+   - Connect your GitHub account
+
+2. **Deploy from GitHub**:
+   - Push this project to a GitHub repository
+   - In Render dashboard, click "New +" → "Web Service"
+   - Connect your GitHub repo
+   - Configure the service:
+     - **Runtime**: Python 3
+     - **Build Command**: `pip install -r requirements.txt`
+     - **Start Command**: `python app.py`
+   - Add environment variable: `FLASK_ENV=production`
+   - Click "Create Web Service"
+
+3. **Alternative: Manual Deploy**:
+   - Use the `render.yaml` file in this repo
+   - Run: `render deploy` (if you have Render CLI installed)
+
+Your app will be live at a `.onrender.com` URL!
+
+### For Production Database (Optional)
+- Sign up for a free PostgreSQL database (e.g., Neon.tech, Supabase)
+- Update `app.py` to use PostgreSQL instead of SQLite
+- Add `psycopg2-binary` to requirements.txt
+
+## �📁 Project Structure
 ```
 univibe/
 ├── app.py                  # Flask app, routes, matching algorithm
-├── requirements.txt
-├── univibe.db              # SQLite DB (auto-created on first run)
+├── requirements.txt├── render.yaml             # Render deployment configuration├── univibe.db              # SQLite DB (auto-created on first run)
 ├── templates/
 │   ├── base.html           # Navbar + layout
 │   ├── index.html          # Landing page

@@ -658,5 +658,6 @@ def cookie_consent():
 
 if __name__ == '__main__':
     init_db()
-    print("Starting UniVibe on http://localhost:5000")
-    app.run(debug=True, use_reloader=False, port=5000, host='127.0.0.1')
+    port = int(os.environ.get('PORT', 5000))
+    print(f"Starting UniVibe on port {port}")
+    app.run(host='0.0.0.0', port=port)
